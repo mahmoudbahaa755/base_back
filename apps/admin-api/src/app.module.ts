@@ -2,9 +2,16 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { JwtModule } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
 
 // Infrastructure
 import { EventBus } from './infrastructure/events';
+
+// Guards
+import { JwtAuthGuard, PermissionsGuard } from '@common';
+
+// Controllers
+import { HealthController } from './health.controller';
 
 // Core Modules
 import { AuthModule } from './modules/auth/auth.module';
@@ -56,7 +63,18 @@ import { PaymentsModule } from './modules/payments/payments.module';
     OrdersModule,
     PaymentsModule,
   ],
-  providers: [EventBus],
+  controllers: [HealthController],
+  providers: [
+    EventBus,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: PermissionsGuard,
+    },
+  ],
   exports: [EventBus],
 })
 export class AppModule {}

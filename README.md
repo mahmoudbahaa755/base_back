@@ -311,6 +311,49 @@ For support and questions:
 - Create an issue in the repository
 - Contact: [Your email]
 
+## 📋 API Endpoints
+
+### Authentication
+- `POST /api/v1/auth/login` - User login
+- `POST /api/v1/auth/refresh` - Refresh token
+- `POST /api/v1/auth/logout` - User logout
+- `GET /api/v1/auth/profile` - Get current user profile
+
+### User Management
+- `GET /api/v1/users` - List users (with pagination)
+- `POST /api/v1/users` - Create user
+- `GET /api/v1/users/:id` - Get user by ID
+- `PATCH /api/v1/users/:id` - Update user
+- `DELETE /api/v1/users/:id` - Delete user (soft delete)
+
+### Role Management
+- `GET /api/v1/roles` - List roles (with pagination)
+- `POST /api/v1/roles` - Create role
+- `GET /api/v1/roles/:id` - Get role by ID
+- `PATCH /api/v1/roles/:id` - Update role
+- `DELETE /api/v1/roles/:id` - Delete role (soft delete)
+
+### Orders (Example)
+- `GET /api/v1/orders` - List orders (with pagination)
+- `POST /api/v1/orders` - Create order
+- `GET /api/v1/orders/:id` - Get order by ID
+- `PATCH /api/v1/orders/:id/status` - Update order status
+- `DELETE /api/v1/orders/:id` - Delete order (soft delete)
+
+### Payments (Example)
+- `GET /api/v1/payments` - List payments (with pagination)
+- `POST /api/v1/payments` - Create payment
+- `GET /api/v1/payments/:id` - Get payment by ID
+- `GET /api/v1/payments/order/:orderId` - Get payments by order
+- `PATCH /api/v1/payments/:id/process` - Process payment
+
+### System
+- `GET /api/v1/health` - Health check (public)
+
+All endpoints (except public ones) require:
+- `Authorization: Bearer <jwt-token>` header
+- Appropriate permissions for the user's role
+
 ---
 
 **Happy coding!** 🎉
