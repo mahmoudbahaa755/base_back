@@ -1,0 +1,51 @@
+{
+  "name": "admin-platform-boilerplate",
+  "version": "1.0.0",
+  "description": "NestJS Monorepo with Drizzle ORM - Admin Platform Boilerplate",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "start": "npm run start:dev",
+    "start:dev": "npm run start:dev --workspace=admin-api",
+    "start:prod": "npm run start:prod --workspace=admin-api",
+    "test": "npm run test --workspaces",
+    "test:e2e": "npm run test:e2e --workspaces",
+    "lint": "npm run lint --workspaces",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "infra:up": "cd infra && docker-compose up -d",
+    "infra:down": "cd infra && docker-compose down",
+    "db:migrate": "npm run db:migrate --workspace=admin-api",
+    "db:seed": "npm run db:seed --workspace=admin-api"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mahmoudbahaa755/base_back.git"
+  },
+  "keywords": [
+    "nestjs",
+    "monorepo",
+    "drizzle-orm",
+    "postgresql",
+    "kafka",
+    "redis",
+    "admin-platform",
+    "modular-monolith"
+  ],
+  "author": "Mahmoud Bahaa",
+  "license": "MIT"
+}
